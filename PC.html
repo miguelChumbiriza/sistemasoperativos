@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué no enciende mi PC?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #34495e;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+        }
+
+        .scenario-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .cause-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .cause-box,
+        .solution-box {
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cause-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-left: 5px solid #e67e22;
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-left: 5px solid #27ae60;
+        }
+
+        .cause-title,
+        .solution-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .cause-title {
+            color: #d35400;
+        }
+
+        .solution-title {
+            color: #27ae60;
+        }
+
+        .steps-container {
+            background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .beep-codes {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .beep-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .beep-pattern {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 15px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .team-section {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: 2px solid #e74c3c;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: "⚠️";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #5a67d8;
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Componentes visuales */
+        .pc-visual {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            border-radius: 10px;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pc-screen {
+            width: 60px;
+            height: 40px;
+            background: #000;
+            border: 3px solid #666;
+            border-radius: 3px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .pc-power-btn {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .pc-dead .pc-power-btn {
+            background: #7f8c8d;
+        }
+
+        .pc-on .pc-power-btn {
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+
+        .pc-error .pc-power-btn {
+            background: #e74c3c;
+            animation: blink 1s infinite;
+        }
+
+        .pc-fan {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #95a5a6;
+            border-radius: 50%;
+            position: absolute;
+            top: 60px;
+            right: 30px;
+        }
+
+        .pc-fan::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background: #95a5a6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pc-fan::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #95a5a6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pc-on .pc-fan {
+            animation: spin 0.5s linear infinite;
+        }
+
+        .cable-visual {
+            width: 100px;
+            height: 20px;
+            background: #2c3e50;
+            border-radius: 10px;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .cable-visual::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: #34495e;
+            right: -30px;
+            top: 2.5px;
+            border-radius: 5px;
+        }
+
+        .power-outlet {
+            width: 80px;
+            height: 80px;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .power-outlet::before,
+        .power-outlet::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background: #2c3e50;
+            border-radius: 2px;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .power-outlet::after {
+            top: 35px;
+        }
+
+        .monitor-visual {
+            width: 120px;
+            height: 80px;
+            background: #2c3e50;
+            border-radius: 5px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .monitor-screen {
+            width: 100px;
+            height: 60px;
+            background: #000;
+            border: 2px solid #34495e;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .monitor-screen.active {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .monitor-screen.no-signal::after {
+            content: 'Sin Señal';
+            position: absolute;
+            color: #e74c3c;
+            font-size: 8px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: blink 2s infinite;
+        }
+
+        .monitor-base {
+            width: 40px;
+            height: 15px;
+            background: #34495e;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 5px 5px;
+        }
+
+        .ram-visual {
+            width: 80px;
+            height: 20px;
+            background: #27ae60;
+            border-radius: 3px;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .ram-visual::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 8px;
+            background: #f39c12;
+            top: 6px;
+            left: 10px;
+            border-radius: 1px;
+        }
+
+        .ram-visual::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 8px;
+            background: #f39c12;
+            top: 6px;
+            right: 10px;
+            border-radius: 1px;
+        }
+
+        .ram-error {
+            animation: shake 0.5s infinite;
+            background: #e74c3c !important;
+        }
+
+        .battery-visual {
+            width: 60px;
+            height: 30px;
+            border: 3px solid #34495e;
+            border-radius: 3px;
+            margin: 20px auto;
+            position: relative;
+            background: #ecf0f1;
+        }
+
+        .battery-visual::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 15px;
+            background: #34495e;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .battery-visual::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 24px;
+            background: #e74c3c;
+            left: 0;
+            top: 0;
+            transition: width 2s ease;
+        }
+
+        .battery-low::after {
+            width: 20%;
+            background: #e74c3c;
+        }
+
+        .battery-medium::after {
+            width: 60%;
+            background: #f39c12;
+        }
+
+        .battery-full::after {
+            width: 100%;
+            background: #27ae60;
+        }
+
+        .beep-animation {
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        .visual-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .connection-line {
+            width: 50px;
+            height: 3px;
+            background: #34495e;
+            margin: 0 10px;
+        }
+
+        .connection-line.broken {
+            background: repeating-linear-gradient(90deg,
+                    #e74c3c,
+                    #e74c3c 5px,
+                    transparent 5px,
+                    transparent 10px);
+        }
+
+        .thermometer {
+            width: 20px;
+            height: 80px;
+            background: #ecf0f1;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .thermometer::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 60px;
+            background: linear-gradient(0deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .thermometer::after {
+            content: '🔥';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+        }
+
+        .dust-visual {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(#7f8c8d, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #7f8c8d, 5px 5px 5px #bdc3c7;
+            animation: shake 2s infinite;
+        }
+
+        .power-supply-visual {
+            width: 60px;
+            height: 60px;
+            background: #bdc3c7;
+            border: 4px solid #34495e;
+            border-radius: 10px;
+            position: relative;
+            margin: 0 auto;
+            animation: blink 1s infinite;
+        }
+
+        .power-supply-visual::after {
+            content: "⚡";
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .dust-visual {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(#7f8c8d, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #7f8c8d, 5px 5px 5px #bdc3c7;
+            animation: shake 2s infinite;
+        }
+
+
+        @media (max-width: 768px) {
+            .cause-solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .slide {
+                padding: 40px 20px;
+            }
+
+            .visual-container {
+                flex-direction: column;
+            }
+
+            .pc-visual {
+                width: 150px;
+                height: 110px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título -->
+        <div class="slide" id="slide1">
+            <div class="slide-number">1/8</div>
+
+            
+            <h1>🖥️ ¿Por qué no enciende mi PC?</h1>
+            <div class="scenario-box">
+                <div class="scenario-title">La situación que todos hemos vivido:</div>
+                <p style="font-size: 1.2em; line-height: 1.6;">Es lunes por la mañana, tienes una presentación
+                    importante, presionas el botón de encendido de tu computadora y... nada sucede. El pánico se apodera
+                    de ti. ¿Qué hacer?</p>
+
+                <div class="visual-container">
+<img src="img/problema.png" alt="RAM mal colocada" style="width: 200px ; display: block; margin: 20px auto; border-radius: 10px; height:200px">
+                    <div class="pc-visual pc-dead">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="font-size: 3em; animation: shake 1s infinite;">😱</div>
+                </div>
+            </div>
+            <div class="team-section">
+                <h3>Equipo de Trabajo</h3>
+                <div class="team-grid">
+                    <div class="team-member">Max Castro Egoavil</div>
+                    <div class="team-member">Miguel Chumbiriza Sulluchuco</div>
+                    <div class="team-member">José Luis Gamero Machaguay</div>
+                    <div class="team-member">Loyda Trujillo Veramendi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problema 1 -->
+        <div class="slide" id="slide2">
+            <div class="slide-number">2/8</div>
+            <h2><span class="icon">🔌</span> Problema 1: "Mi PC está completamente muerta"</h2>
+
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Presionas el botón de encendido y es como si la computadora no existiera. No se escucha ningún
+                    sonido, no se enciende ninguna luz, los ventiladores no giran. Es como si estuviera desconectada del
+                    mundo.</p>
+
+                <div class="visual-container">
+                    <img src="img/pc-no-enciende1.gif" alt="PC no enciende" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    <div class="pc-visual pc-dead">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div class="connection-line broken"></div>
+                    <div class="power-outlet"></div>
+                </div>
+            </div>
+
+            <div class="cause-solution-grid">
+                <div class="cause-box">
+                    <div class="cause-title">🔍 Posibles Causas</div>
+                    <ul>
+                        <li>La fuente de poder está dañada o desconectada</li>
+                        <li>El tomacorriente o protector no funciona</li>
+                        <li>El botón de encendido está defectuoso</li>
+                        <li>El cable de corriente está suelto</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <div class="solution-title">💡 Soluciones Paso a Paso</div>
+                    <ul>
+                        <li>Verifica que el cable esté bien conectado</li>
+                        <li>Prueba en otro tomacorriente</li>
+                        <li>Revisa el interruptor de la fuente (si tiene)</li>
+                        <li>Prueba con otro cable de corriente</li>
+                        <li>Como último recurso: conecta directamente los pines del botón de encendido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Problema 2 -->
+        <div class="slide" id="slide3">
+            <div class="slide-number">3/8</div>
+            <h2><span class="icon">⚡</span> Problema 2: "Se enciende pero no arranca"</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Los ventiladores giran, algunas luces se encienden, escuchas el ruido característico de la
+                    computadora "despertando", pero después de unos segundos todo se detiene o simplemente no pasa nada
+                    más. La pantalla permanece negra.</p>
+
+                <div class="visual-container">
+                    <img src="img/fuente-poder.jpg" alt="Fuente de poder" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/placa-madre.jpg" alt="Fuente de poder" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/procesador.webp" alt="Fuente de poder" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/ram-mal-colocada.gif" alt="Fuente de poder" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+
+                    <div class="pc-visual pc-error">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="ram-visual ram-error"></div>
+                        <p style="font-size: 12px; color: #e74c3c; margin-top: 5px;">RAM con problemas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cause-solution-grid">
+                <div class="cause-box">
+                    <div class="cause-title">🔍 Posibles Causas</div>
+                    <ul>
+                        <li>La fuente de poder entrega energía insuficiente</li>
+                        <li>La placa madre tiene algún problema</li>
+                        <li>La memoria RAM está mal colocada o dañada</li>
+                        <li>El procesador o tarjeta gráfica fallan</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <div class="solution-title">💡 Soluciones Paso a Paso</div>
+                    <ul>
+                        <li>Retira y vuelve a colocar la memoria RAM</li>
+                        <li>Limpia los contactos dorados de la RAM con una goma</li>
+                        <li>Prueba con un solo módulo de RAM</li>
+                        <li>Verifica que todos los cables estén bien conectados</li>
+                        <li>Escucha si hay códigos de pitidos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Problema 3 -->
+        <div class="slide" id="slide4">
+            <div class="slide-number">4/8</div>
+            <h2><span class="icon">🖥️</span> Problema 3: "Se enciende pero no veo nada"</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Tu computadora parece funcionar normalmente: escuchas los ventiladores, ves las luces encendidas,
+                    incluso puedes escuchar el sonido de Windows iniciando, pero tu monitor permanece completamente
+                    negro o muestra "Sin señal".</p>
+
+                <div class="visual-container">
+                    <img src="img/cable-hdmi.gif" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/tarjeta-video.png" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+
+                    <div class="pc-visual pc-on">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div class="connection-line broken"></div>
+                    <div class="monitor-visual">
+                        <div class="monitor-screen no-signal"></div>
+                        <div class="monitor-base"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cause-solution-grid">
+                <div class="cause-box">
+                    <div class="cause-title">🔍 Posibles Causas</div>
+                    <ul>
+                        <li>El monitor está apagado o mal conectado</li>
+                        <li>Cable de video (HDMI, VGA, DisplayPort) defectuoso</li>
+                        <li>Tarjeta de video dañada</li>
+                        <li>Monitor configurado en entrada incorrecta</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <div class="solution-title">💡 Soluciones Paso a Paso</div>
+                    <ul>
+                        <li>Verifica que el monitor esté encendido</li>
+                        <li>Revisa que el cable esté bien conectado en ambos extremos</li>
+                        <li>Prueba con otro cable de video</li>
+                        <li>Cambia la entrada del monitor (HDMI, VGA, etc.)</li>
+                        <li>Conecta a otra salida de video si hay varias</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Problema 4 -->
+        <div class="slide" id="slide5">
+            <div class="slide-number">5/8</div>
+            <h2><span class="icon">⚙️</span> Problema 4: "No puedo entrar al BIOS"</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Tu computadora enciende, pero cuando intentas presionar F2, F12 o Delete para entrar al BIOS,
+                    simplemente no responde. Es como si estuviera "congelada" antes de cargar el sistema operativo.</p>
+
+                <div class="visual-container">
+                    <img src="img/teclado.webp" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/bateria.gif" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <div class="pc-visual pc-on">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="battery-visual battery-low"></div>
+                        <p style="font-size: 12px; color: #e74c3c; margin-top: 5px;">batería CMOS agotada</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h3 style="margin-top: 30px; color: #c0392b;">La Solución Sorprendente:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">Muchas veces el problema está en la pequeña batería
+                    circular de la placa madre (batería CMOS). Esta batería mantiene la configuración del BIOS incluso
+                    cuando la computadora está apagada.</p>
+            </div>
+
+            <div class="steps-container">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Pasos para solucionarlo:</h3>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>Apaga la computadora y desconéctala completamente</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>Abre la carcasa y localiza la batería redonda (similar a la de un reloj)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>Retira la batería cuidadosamente y espera 30 segundos</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>Vuelve a colocar la batería (o reemplázala si es muy antigua)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>Enciende la computadora y prueba acceder al BIOS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Pitidos -->
+        <div class="slide" id="slide6">
+            <div class="slide-number">6/8</div>
+            <h2><span class="icon">🔊</span> Problema 5: "Mi PC hace ruidos extraños"</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Al encender tu computadora, en lugar del silencio habitual, escuchas una serie de pitidos como si
+                    fuera una alarma. No te preocupes, ¡tu computadora no va a explotar! Está tratando de comunicarse
+                    contigo.</p>
+
+                <div class="visual-container">
+                    <img src="img/ram.gif" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <div class="pc-visual pc-error">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="font-size: 2em; text-align: center;">
+                        <span class="beep-animation">🔊</span>
+                        <div style="font-size: 0.5em; margin-top: 10px;">BEEP BEEP BEEP</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beep-codes">
+                <h3 style="color: white; margin-bottom: 20px;">🔍 Decodificando los Pitidos</h3>
+                <p style="margin-bottom: 20px;">Los pitidos son el "lenguaje" que usa tu computadora para decirte qué
+                    está mal:</p>
+
+                <div class="beep-item">
+                    <div class="beep-pattern">1 largo + 2 cortos</div>
+                    <div>Problema con la tarjeta gráfica</div>
+                </div>
+
+                <div class="beep-item">
+                    <div class="beep-pattern">Varios cortos</div>
+                    <div>Problema con la memoria RAM</div>
+                </div>
+
+                <div class="beep-item">
+                    <div class="beep-pattern">1 largo continuo</div>
+                    <div>Problema con la fuente de poder</div>
+                </div>
+
+                <div class="beep-item">
+                    <div class="beep-pattern">Sin pitidos</div>
+                    <div>Posible problema con el procesador o placa madre</div>
+                </div>
+            </div>
+
+            <div class="warning-box" style="margin-top: 30px;">
+                <p><strong>Consejo Pro:</strong> Cada marca de placa madre tiene sus propios códigos. Busca en internet
+                    "códigos de pitidos" + la marca de tu placa madre para obtener información específica.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Problema 6 -->
+        <div class="slide" id="slide7">
+            <div class="slide-number">7/8</div>
+            <h2><span class="icon">🔄</span> Problema 6: "Se enciende y se apaga constantemente"</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Situación real:</div>
+                <p>Tu computadora parece tener vida propia: se enciende por unos segundos, luego se apaga, luego se
+                    vuelve a encender, y así en un ciclo infinito. Es como si tuviera hipo electrónico.</p>
+
+                <div class="visual-container">
+                    <img src="img/pasta-termica.gif" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <img src="img/polvo.gif" alt="RAM mal colocada" style="width: 300px; display: block; margin: 20px auto; border-radius: 10px;">
+                    <div class="pc-visual pc-error">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div class="thermometer"></div>
+                    <div style="text-align: center; font-size: 1.2em; color: #e74c3c;">
+                        ON → OFF → ON → OFF...
+                    </div>
+                </div>
+            </div>
+            <div class="dust-visual"></div>
+
+
+            <div class="cause-solution-grid">
+                <div class="cause-box">
+                    <div class="cause-title">🔥 Principales Causas</div>
+                    <ul>
+                        <li><strong>Sobrecalentamiento:</strong> El procesador se calienta demasiado rápido</li>
+                        <li><strong>Fuente insuficiente:</strong> No puede mantener la energía necesaria</li>
+                        <li><strong>Exceso de polvo:</strong> Bloquea la ventilación</li>
+                        <li><strong>Pasta térmica seca:</strong> El procesador no se enfría bien</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <div class="solution-title">🛠️ Soluciones</div>
+                    <ul>
+                        <li>Limpia todo el interior con aire comprimido</li>
+                        <li>Verifica que todos los ventiladores giren</li>
+                        <li>Revisa que el disipador esté bien colocado</li>
+                        <li>Considera cambiar la pasta térmica</li>
+                        <li>Verifica que la fuente tenga suficiente potencia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>¡Importante!</strong> Si el problema persiste después de limpiar, puede ser un problema más
+                    serio con la fuente de poder o la placa madre. En este caso, es recomendable consultar con un
+                    técnico.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Diagnóstico -->
+        <div class="slide" id="slide8">
+            <div class="slide-number">8/8</div>
+            <h2><span class="icon">🔧</span> Guía de Diagnóstico Rápido</h2>
+
+            <div class="scenario-box">
+                <div class="scenario-title">Tu Método de Diagnóstico en 3 Pasos:</div>
+                <p>Cuando tu PC no encienda, sigue este proceso sistemático para identificar rápidamente el problema:
+                </p>
+
+                <div class="visual-container">
+                    <div class="pc-visual pc-dead">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="font-size: 2em;">➡️</div>
+                    <div class="pc-visual pc-error">
+                        <div class="pc-screen"></div>
+                        <div class="pc-power-btn"></div>
+                        <div class="pc-fan"></div>
+                    </div>
+                    <div style="font-size: 2em;">➡️</div>
+                    <div class="monitor-visual">
+                        <div class="monitor-screen active"></div>
+                        <div class="monitor-base"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>¿Hay señales de vida?</strong><br>
+                        Busca LEDs encendidos, ventiladores girando, sonidos del disco duro.<br>
+                        <em>Si NO hay nada → Problema de energía</em>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>¿Escuchas pitidos?</strong><br>
+                        Los pitidos te darán pistas específicas sobre el problema.<br>
+                        <em>Si SÍ hay pitidos → Busca el código específico de tu BIOS</em>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>¿Hay imagen en pantalla?</strong><br>
+                        Si no hay imagen pero sí hay actividad, revisa monitor y cables.<br>
+                        <em>Si no hay imagen → Problema de video o RAM</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box"
+                style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-color: #27ae60;">
+                <h3 style="margin-top: 30px; color: #27ae60;">💡 Consejo Final</h3>
+                <p>En caso de duda, prueba el método minimalista: conecta solo lo esencial (fuente + placa madre + RAM +
+                    procesador) y ve agregando componentes uno por uno hasta encontrar el problema.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <h3 style="color: #667eea;">¡Ahora ya sabes cómo diagnosticar tu PC!</h3>
+                <p style="font-size: 1.2em; color: #666;">Con estos conocimientos, la mayoría de problemas de encendido
+                    tendrán solución.</p>
+            </div>
+        </div>
+
+
+       
+
+
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.style.display = 'none');
+
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+
+            document.getElementById(`slide${currentSlide}`).style.display = 'flex';
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Mostrar primera diapositiva
+        showSlide(1);
+
+        // Añadir efectos de hover a los elementos interactivos
+        document.querySelectorAll('.step-item, .beep-item, .cause-box, .solution-box').forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
